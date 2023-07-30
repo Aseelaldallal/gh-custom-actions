@@ -1,0 +1,21 @@
+# For composite action, this is the only
+# file you need
+
+name: 'Get & Cache Dependencies'
+# We don't specify an on key, because they are not workflows
+# They are part of workflows
+description: 'Get the dependencies (via npm) and cache them'
+runs: 
+    using: 'composite' # MUST be composite
+    steps: 
+        - name: Cache dependencies
+            id: cache
+            uses: actions/cache@v3
+            with:
+            path: node_modules
+            key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+        - name: Install dependencies
+            if: steps.cache.outputs.cache-hit != 'true'
+            run: npm ci
+            shell: bash # must specify this when creating custom composite action
+            # and using the run key
