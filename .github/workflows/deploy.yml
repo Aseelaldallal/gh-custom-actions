@@ -10,9 +10,12 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Load and Cache Dependencies
+        id: cache-deps
         uses: ./.github/actions/cached-deps # you don't have to point at actions.yaml - automatic
         with:
             caching: 'false'
+      - name: Output Info
+        run: echo "Cache Used? ${{steps.cache-deps.outputs.used-cache}}"
       - name: Lint code
         run: npm run lint
   test:
