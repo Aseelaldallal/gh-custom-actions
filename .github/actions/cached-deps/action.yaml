@@ -9,13 +9,13 @@ runs:
     using: 'composite' # MUST be composite
     steps: 
         - name: Cache dependencies
-            id: cache
-            uses: actions/cache@v3
-            with:
+          id: cache
+          uses: actions/cache@v3
+          with:
             path: node_modules
             key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
         - name: Install dependencies
-            if: steps.cache.outputs.cache-hit != 'true'
-            run: npm ci
-            shell: bash # must specify this when creating custom composite action
-            # and using the run key
+          if: steps.cache.outputs.cache-hit != 'true'
+          run: npm ci
+          shell: bash # must specify this when creating custom composite action
+          # and using the run key
