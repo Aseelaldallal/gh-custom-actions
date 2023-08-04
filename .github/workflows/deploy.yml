@@ -6,6 +6,9 @@ on:
 jobs:
   information:
     runs-on: ubunto-latest
+    steps:
+      - name: hi
+        run: echo "hello"
   lint:
     runs-on: ubuntu-latest
     steps:
