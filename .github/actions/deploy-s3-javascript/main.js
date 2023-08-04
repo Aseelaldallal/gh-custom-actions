@@ -15,10 +15,14 @@ function run() { // you see this in a lot of actions, but not required
 
     // 2) Upload Files
     const s3uri = `s3://${bucket}`
+    
     // aws cli installed in ubunto-latest (see github actions documentation)
     exec.exec(`aws s3 sync ${distFolder} ${s3uri} -- region ${bucketRegion}`);
     // exec.exec is used to execute shell commands from within a actions workflow
     // here we are using exeucting the AWS cliecommand for synchronizing files with s3 bucket
+
+    const websiteUrl = `http://${bucket}.s3-website-${bucketRegion}.amaxonaws.com`;
+    core.setOutput('website-url', websiteUrl) ;
 }
 
 run();
