@@ -65,13 +65,13 @@ jobs:
       - name: Deploy site
         id: deploy
         uses: ./github/actions/deploy-s3-javascript
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
-      #     SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #   with: # remember we must provide input, see the action file, it has required inputs
-      #     bucket: gha-custom-action-hosting
-      #     dist-folder: ./dist
-      # - name: Output Information
-      #   run: |
-      #     echo "LIVE URL: ${{ steps.deploy.outputs.website-url }}"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
+          SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        with: # remember we must provide input, see the action file, it has required inputs
+          bucket: gha-custom-action-hosting
+          dist-folder: ./dist
+      - name: Output Information
+        run: |
+          echo "LIVE URL: ${{ steps.deploy.outputs.website-url }}"
           
