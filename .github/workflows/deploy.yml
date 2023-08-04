@@ -4,6 +4,11 @@ on:
     branches:
       - main
 jobs:
+  information:
+    runs-on: ubunto-latest
+    steps:
+      - name: Get code
+        run: echo "hello"
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -64,8 +69,4 @@ jobs:
         run: ls
       - name: Deploy site
         run: echo "Deploying..."
-  information:
-    runs-on: ubunto-latest
-    steps:
-      - name: Get code
-        run: echo "hello"
+
